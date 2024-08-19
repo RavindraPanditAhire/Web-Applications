@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certifications</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      header {
+        text-align: center;
+        padding: 2rem 0;
+        background-color: #333;
+        color: #fff;
+      }
+
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .certificate-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        margin: 1rem;
+        width: 300px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        cursor: pointer;
+      }
+
+      .certificate-card:hover {
+        transform: scale(1.05);
+      }
+
+      .certificate-card img {
+        width: 100%;
+        height: auto;
+      }
+
+      .description {
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .description h3 {
+        margin-top: 0;
+        color: #333;
+      }
+
+      .description p {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding-top: 60px;
+      }
+
+      .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+      }
+
+      .modal-content,
+      .close {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+      }
+
+      @keyframes zoom {
+        from {
+          transform: scale(0);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      #caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+        height: 150px;
+      }
+      #downloadBtn {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    #downloadBtn:hover {
+        background-color: #555;
+    }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>My Certifications</h1>
+    </header>
+
+    <section class="gallery">
+      <!-- Static certification cards (if any) -->
+
+      <!-- Dynamic certification cards will be added by JS -->
+    </section>
+
+    <!-- Modal for displaying the full-size image -->
+    <div id="imageModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modalImg" />
+      <div id="caption"></div>
+      <a id="downloadBtn" href="" download>Download Certificate</a>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const gallery = document.querySelector(".gallery");
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+        const captionText = document.getElementById("caption");
+        const downloadBtn = document.getElementById("downloadBtn");
+
+        const span = document.getElementsByClassName("close")[0];
+
+        const certificates = [
+        {
+            imgSrc: "./img/Certifications/Linux_Tutorial.png",
+            title: "Working the Linux(Ubuntu) Operating System",
+            description: "Introduction Linux OS",
+          },
+
+        {
+            imgSrc: "./img/Certifications/Java_DSA_Intermediate.png",
+            title: "Introduction to Java DSA Intermediate",
+            description: "Introduction to Java DSA",
+          },
+
+        {
+            imgSrc: "./img/Certifications/Java_DSA_Beginers.png",
+            title: "Basic Java Data Structure",
+            description: "Introduction to Java DSA",
+          },
+
+        {
+            imgSrc: "./img/Certifications/IOT.png",
+            title: "IOT things and components and applications",
+            description: "Introduction to IOT",
+          },
+
+        {
+            imgSrc: "./img/Certifications/Intro_Git_Copilot.png",
+            title: "Git Copilot",
+            description: "Knowing the tool Github Copilot",
+          },
+
+        {
+            imgSrc: "./img/Certifications/Intro_Digital_Marketing.png",
+            title: "Introduction to Digital Marketing",
+            description: "know the Digital Marketing",
+          },
+        {
+            imgSrc: "./img/Certifications/Flutter for Beginners.png",
+            title: "Introduction to flutter Framework",
+            description: "Introduction to Flutter Development",
+          },
+
+        {
+            imgSrc: "./img/Certifications/ChatGPT for Coders.png",
+            title: "Programming using ChatPT",
+            description: "programming with the help of ChatGPT",
+          },
+        
+        {
+            imgSrc: "./img/Certifications/Basic_Java.png",
+            title: "Introduction to Java Programming Language",
+            description: "Introduction to Java Programming Language",
+          },
+        {
+            imgSrc: "./img/Certifications/Android_Application_Development.png",
+            title: "Introduction to Android Application Dvelopment",
+            description: "process to create android application",
+          },
+        {
+            imgSrc: "./img/Certifications/AI_&_IOT.png",
+            title: "AI and IOT",
+            description: "hands on experience using AI tools for Implementation of IOT Concepts",
+          },
+
+          {
+            imgSrc: "./img/Certifications/AI and Python.png",
+            title: "AI and Python",
+            description: "emerging tools for AI and Python",
+          },
+          {
+            imgSrc: "./img/Certifications/python_for_Data_Science.png",
+            title: "Python For Data Science",
+            description: "An introductory course in Data Science using Python.",
+          },
+          {
+            imgSrc: "./img/Certifications/Intro_Git_Copilot.png",
+            title: "Introduction to Git & GitHub Copilot",
+            description:
+              "A course on using Git and GitHub Copilot for version control and code assistance.",
+          },
+          {
+            imgSrc: "./img/Certifications/python_for_Data_Science.png",
+            title: "Python For Data Science",
+            description: "An introductory course in Data Science using Python.",
+          },
+          // Add more certificates here
+        ];
+
+        certificates.forEach((cert) => {
+          const certCard = document.createElement("div");
+          certCard.className = "certificate-card";
+
+          certCard.innerHTML = `
+                    <img src="${cert.imgSrc}" alt="${cert.title}">
+                    <div class="description">
+                        <h3>${cert.title}</h3>
+                        <p>${cert.description}</p>
+                    </div>
+                `;
+
+          gallery.appendChild(certCard);
+
+          certCard.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = cert.imgSrc;
+            captionText.innerHTML = `${cert.title} - ${cert.description}`;
+          };
+        });
+
+        // Close modal when the user clicks on the 'x'
+        span.onclick = function () {
+          modal.style.display = "none";
+        };
+
+        // Close modal when the user clicks anywhere outside the image
+        window.onclick = function (event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        };
+      });
+    </script>
+  </body>
+</html>
